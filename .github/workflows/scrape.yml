@@ -1,0 +1,44 @@
+name: Apartment Scrape
+
+on:
+  schedule:
+    # 8am, 11am, 2pm, 5pm, 8pm Pacific (UTC-7 during PDT / UTC-8 during PST)
+    # Using PDT offsets (March-November): add 7 hours to Pacific time
+    - cron: '0 15,18,21 * * *'   # 8am, 11am, 2pm PDT
+    - cron: '0 0,3 * * *'        # 5pm, 8pm PDT
+  workflow_dispatch: {}  # Allow manual trigger
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright Chromium
+        run: playwright install chromium --with-deps
+
+      - name: Run scraper
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO || 'toddgavin@gmail.com' }}
+        run: python main.py
+
+      - name: Commit updated DB and logs
+        run: |
+          git config user.name "Apartment Bot"
+          git config user.email "bot@apartment-scrape-bot"
+          git add data/listings.db logs/session_log.md
+          git diff --cached --quiet || git commit -m "bot: update listings and session log [skip ci]"
+          git push

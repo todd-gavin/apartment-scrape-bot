@@ -1,0 +1,67 @@
+# Apartment Scrape Bot
+
+## Purpose
+Automated rental listing scraper for apartments and houses near Santa Monica, CA.
+Scrapes 6 major rental sites on a scheduled basis, scores listings by preference
+criteria, persists results in SQLite, and sends email notifications for new finds
+via Resend. Runs autonomously on GitHub Actions cron.
+
+## Target Neighborhoods
+Santa Monica, Brentwood, Mar Vista, Ocean Park, Venice
+
+## Budget
+- Ideal: $3,100/mo
+- Local max: $3,500/mo
+- Absolute max: $4,000/mo
+
+## Preferences (ranked)
+1. 1-bedroom
+2. Deck / outdoor area
+3. Enclosed 1-car garage
+4. In-unit laundry
+
+## Key Files
+- `main.py` — Entry point; run with `python main.py`
+- `config.py` — All tunable parameters (neighborhoods, prices, scoring weights)
+- `models.py` — Listing dataclass
+- `database.py` — SQLite persistence layer
+- `scorer.py` — Preferability scoring (0-100 scale)
+- `notifier.py` — Resend email notifications
+- `session_log.py` — Session logging utilities
+- `scrapers/` — One module per rental site
+
+## Scrapers
+| Site | Strategy | File |
+|------|----------|------|
+| Craigslist | httpx + BeautifulSoup | `scrapers/craigslist.py` |
+| Apartments.com | Playwright | `scrapers/apartments_com.py` |
+| Zillow | Playwright (__NEXT_DATA__) | `scrapers/zillow.py` |
+| Zumper | Playwright | `scrapers/zumper.py` |
+| HotPads | Playwright | `scrapers/hotpads.py` |
+| WestsideRentals | Playwright (thin wrapper) | `scrapers/westsiderentals.py` |
+
+## Session Log
+See `logs/session_log.md` for a running record of every scrape session,
+including per-site results, error details, and notification status.
+
+## Setup
+1. `python -m venv venv && source venv/bin/activate`
+2. `pip install -r requirements.txt`
+3. `playwright install chromium`
+4. Copy `.env.example` to `.env` and fill in `RESEND_API_KEY`
+5. `python main.py` to run manually
+6. Push to GitHub — Actions cron handles scheduled runs
+
+## CLI Flags
+- `python main.py` — full run (scrape + score + email)
+- `python main.py --dry-run` — scrape + score, no email
+- `python main.py --source craigslist` — run single scraper only
+- `python main.py --test-email` — send sample email to verify setup
+
+## Architecture Notes
+- Tier 1 scrapers (Craigslist): httpx + BeautifulSoup (server-rendered HTML)
+- Tier 2 scrapers: Playwright with stealth plugin (JS-rendered SPAs)
+- WestsideRentals shares data with Apartments.com (same parent company)
+- Deduplication by address normalization + source-specific IDs
+- Listings persist in SQLite at `data/listings.db`
+- GitHub Actions commits DB + session log back to repo after each run

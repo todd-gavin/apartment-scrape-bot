@@ -35,7 +35,7 @@ jobs:
       - name: Run scraper
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO || 'todd1gavin@gmail.com,amandayannuzzi@gmail.com' }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO || 'toddrdgavin@gmail.com' }}
         run: python main.py
 
       - name: Generate dashboard

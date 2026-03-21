@@ -64,3 +64,197 @@ Each session records scraper results, new listings found, and notification statu
 
 
 ---
+
+## Session: 2026-03-21 03:51:39
+
+**Duration:** 10m 35s | **Status:** Partial
+
+| Source | Status | Found | New | Errors |
+|--------|--------|-------|-----|--------|
+| craigslist | OK | 34 | 0 | 0 |
+| apartments.com | FAILED | 0 | 0 | 4 |
+| zillow | OK | 0 | 0 | 0 |
+| zumper | FAILED | 0 | 0 | 4 |
+| hotpads | FAILED | 0 | 0 | 2 |
+| westsiderentals | FAILED | 0 | 0 | 1 |
+
+**New listings:** 12 | **Total active:** 371 | **Email sent:** Yes
+
+**Top new listing:** Score 100.0 - $2,799 1BR 
+
+### Errors
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/santa-monica-ca?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/los-angeles-ca/brentwood?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/los-angeles-ca/mar-vista?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/los-angeles-ca/venice?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[class*='ListingCard'], .listing-card") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[class*='ListingCard'], .listing-card") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, .listing-card, [class*='ListingCard']") to be visible
+
+
+
+---
+
+## Session: 2026-03-21 15:16:47
+
+**Duration:** 10m 11s | **Status:** Partial
+
+| Source | Status | Found | New | Errors |
+|--------|--------|-------|-----|--------|
+| craigslist | OK | 33 | 0 | 0 |
+| apartments.com | FAILED | 0 | 0 | 4 |
+| zillow | OK | 0 | 0 | 0 |
+| zumper | FAILED | 0 | 0 | 4 |
+| hotpads | FAILED | 31 | 0 | 1 |
+| westsiderentals | FAILED | 0 | 0 | 1 |
+
+**New listings:** 33 | **Total active:** 404 | **Email sent:** Yes
+
+**Top new listing:** Score 70.0 - $2,575 1BR 
+
+### Errors
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/santa-monica-ca?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/los-angeles-ca/brentwood?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/los-angeles-ca/mar-vista?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/los-angeles-ca/venice?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[class*='ListingCard'], .listing-card") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, .listing-card, [class*='ListingCard']") to be visible
+
+
+
+---
+
+## Session: 2026-03-21 18:17:31
+
+**Duration:** 10m 30s | **Status:** Partial
+
+| Source | Status | Found | New | Errors |
+|--------|--------|-------|-----|--------|
+| craigslist | OK | 30 | 0 | 0 |
+| apartments.com | FAILED | 0 | 0 | 4 |
+| zillow | OK | 0 | 0 | 0 |
+| zumper | FAILED | 0 | 0 | 4 |
+| hotpads | FAILED | 0 | 0 | 2 |
+| westsiderentals | FAILED | 0 | 0 | 1 |
+
+**New listings:** 7 | **Total active:** 411 | **Email sent:** Yes
+
+**Top new listing:** Score 85.0 - $2,400 1BR 
+
+### Errors
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, li.mortar-wrapper") to be visible
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/santa-monica-ca?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/los-angeles-ca/brentwood?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/los-angeles-ca/mar-vista?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.zumper.com/apartments-for-rent/los-angeles-ca/venice?beds=1&price_max=4000", waiting until "networkidle"
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[class*='ListingCard'], .listing-card") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("[class*='ListingCard'], .listing-card") to be visible
+
+- Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("article.placard, .listing-card, [class*='ListingCard']") to be visible
+
+
+
+---

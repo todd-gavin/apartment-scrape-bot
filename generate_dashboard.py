@@ -19,8 +19,9 @@ def generate():
     total = stats.get("total_active", 0)
     top_score = listings[0].score if listings else 0
 
-    # Collect unique neighborhoods for filter tabs
+    # Collect unique neighborhoods and sources for filter tabs
     neighborhoods = sorted({l.neighborhood for l in listings if l.neighborhood})
+    sources = sorted({l.source for l in listings if l.source})
 
     # Build listing rows
     rows_html = ""
@@ -58,12 +59,25 @@ def generate():
             pills = '<span class="pill pill-gray">None</span>'
 
         neighborhood = l.neighborhood or "N/A"
+        address = l.address or ""
+        address_display = address[:50] + "..." if len(address) > 50 else address
         title = l.title[:60] + "..." if len(l.title) > 60 else l.title
         first_seen = l.first_seen.strftime("%b %d")
 
+        # Amenity data attributes for filtering
+        amenity_tags = []
+        if l.has_outdoor_space:
+            amenity_tags.append("outdoor")
+        if l.has_garage:
+            amenity_tags.append("garage")
+        if l.has_in_unit_laundry:
+            amenity_tags.append("laundry")
+        amenities_data = ",".join(amenity_tags) if amenity_tags else "none"
+
         rows_html += f"""
         <tr class="listing-row" data-score="{l.score}" data-price="{l.price}"
-            data-neighborhood="{neighborhood}" data-tier="{tier}">
+            data-neighborhood="{neighborhood}" data-tier="{tier}"
+            data-source="{l.source}" data-amenities="{amenities_data}">
           <td class="col-score">
             <span class="score-badge" style="background:{score_bg};color:{score_fg}">{l.score}</span>
           </td>
@@ -72,6 +86,7 @@ def generate():
             <span class="tier-badge" style="background:{tier_bg};color:{tier_fg}">{tier}</span>
           </td>
           <td class="col-neighborhood">{neighborhood}</td>
+          <td class="col-address" title="{address}">{address_display}</td>
           <td class="col-beds">{l.bedrooms}BR</td>
           <td class="col-amenities">{pills}</td>
           <td class="col-title hide-mobile">{title}</td>
@@ -87,6 +102,11 @@ def generate():
     hood_buttons = '<button class="filter-btn active" data-filter="all">All</button>\n'
     for n in neighborhoods:
         hood_buttons += f'<button class="filter-btn" data-filter="{n}">{n}</button>\n'
+
+    # Build source filter buttons
+    source_buttons = '<button class="filter-btn active" data-filter="all">All</button>\n'
+    for s in sources:
+        source_buttons += f'<button class="filter-btn" data-filter="{s}">{s.title()}</button>\n'
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -146,6 +166,7 @@ def generate():
   .col-link a:hover {{ text-decoration: underline; }}
 
   .col-title {{ max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #64748b; font-size: 13px; }}
+  .col-address {{ max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #64748b; font-size: 13px; }}
   .col-source {{ color: #94a3b8; font-size: 12px; }}
   .col-date {{ color: #94a3b8; font-size: 12px; white-space: nowrap; }}
 
@@ -193,6 +214,17 @@ def generate():
       <button class="filter-btn" data-filter="Local Max">Local Max (&le;$3,500)</button>
       <button class="filter-btn" data-filter="Absolute Max">Abs Max (&le;$4,000)</button>
     </div>
+    <div class="filter-group" id="source-filters">
+      <div class="filter-group-label">Source</div>
+      {source_buttons}
+    </div>
+    <div class="filter-group" id="amenity-filters">
+      <div class="filter-group-label">Amenities</div>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="outdoor">Outdoor</button>
+      <button class="filter-btn" data-filter="garage">Garage</button>
+      <button class="filter-btn" data-filter="laundry">In-Unit W/D</button>
+    </div>
   </div>
 
   <div class="table-wrap">
@@ -202,6 +234,7 @@ def generate():
           <th data-sort="score" class="sorted-desc">Score</th>
           <th data-sort="price">Price</th>
           <th data-sort="neighborhood">Area</th>
+          <th data-sort="address">Address</th>
           <th data-sort="beds">Beds</th>
           <th>Amenities</th>
           <th class="hide-mobile">Title</th>
@@ -230,31 +263,33 @@ def generate():
 // --- Filtering ---
 let activeHood = 'all';
 let activeTier = 'all';
+let activeSource = 'all';
+let activeAmenity = 'all';
 
-document.querySelectorAll('#hood-filters .filter-btn').forEach(btn => {{
-  btn.addEventListener('click', () => {{
-    document.querySelectorAll('#hood-filters .filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeHood = btn.dataset.filter;
-    applyFilters();
+function setupFilterGroup(groupId, setter) {{
+  document.querySelectorAll('#' + groupId + ' .filter-btn').forEach(btn => {{
+    btn.addEventListener('click', () => {{
+      document.querySelectorAll('#' + groupId + ' .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      setter(btn.dataset.filter);
+      applyFilters();
+    }});
   }});
-}});
+}}
 
-document.querySelectorAll('#tier-filters .filter-btn').forEach(btn => {{
-  btn.addEventListener('click', () => {{
-    document.querySelectorAll('#tier-filters .filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeTier = btn.dataset.filter;
-    applyFilters();
-  }});
-}});
+setupFilterGroup('hood-filters', v => activeHood = v);
+setupFilterGroup('tier-filters', v => activeTier = v);
+setupFilterGroup('source-filters', v => activeSource = v);
+setupFilterGroup('amenity-filters', v => activeAmenity = v);
 
 function applyFilters() {{
   let visible = 0;
   document.querySelectorAll('.listing-row').forEach(row => {{
     const matchHood = activeHood === 'all' || row.dataset.neighborhood === activeHood;
     const matchTier = activeTier === 'all' || row.dataset.tier === activeTier;
-    const show = matchHood && matchTier;
+    const matchSource = activeSource === 'all' || row.dataset.source === activeSource;
+    const matchAmenity = activeAmenity === 'all' || (row.dataset.amenities && row.dataset.amenities.split(',').includes(activeAmenity));
+    const show = matchHood && matchTier && matchSource && matchAmenity;
     row.style.display = show ? '' : 'none';
     if (show) visible++;
   }});
@@ -290,6 +325,10 @@ document.querySelectorAll('thead th[data-sort]').forEach(th => {{
       }} else if (field === 'neighborhood') {{
         va = a.dataset.neighborhood.toLowerCase();
         vb = b.dataset.neighborhood.toLowerCase();
+      }} else if (field === 'address') {{
+        va = (a.querySelector('.col-address') || {{}}).textContent || '';
+        vb = (b.querySelector('.col-address') || {{}}).textContent || '';
+        va = va.toLowerCase(); vb = vb.toLowerCase();
       }} else if (field === 'beds') {{
         va = parseInt(a.querySelector('.col-beds').textContent);
         vb = parseInt(b.querySelector('.col-beds').textContent);

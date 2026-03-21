@@ -21,14 +21,13 @@ class ZillowScraper(BaseScraper):
 
         listings = []
 
-        async with async_playwright() as p:
+        async with Stealth().use_async(async_playwright()) as p:
             browser = await p.chromium.launch(headless=True)
             context = await browser.new_context(
                 user_agent=self.random_user_agent(),
                 viewport={"width": 1920, "height": 1080},
             )
             page = await context.new_page()
-            await Stealth().use_async(page)
 
             for search_url in ZILLOW_SEARCH_URLS:
                 try:

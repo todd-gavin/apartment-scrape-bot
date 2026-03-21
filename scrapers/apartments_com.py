@@ -1,4 +1,4 @@
-"""Apartments.com scraper — Playwright (JS-rendered, Akamai WAF)."""
+"""Apartments.com scraper — Camoufox (stealth Firefox to bypass Akamai WAF)."""
 
 import logging
 import re
@@ -15,18 +15,12 @@ class ApartmentsComScraper(BaseScraper):
     name = "apartments.com"
 
     async def scrape(self) -> list[Listing]:
-        from playwright.async_api import async_playwright
-        from playwright_stealth import Stealth
+        from camoufox.async_api import AsyncCamoufox
 
         listings = []
 
-        async with Stealth().use_async(async_playwright()) as p:
-            browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context(
-                user_agent=self.random_user_agent(),
-                viewport={"width": 1920, "height": 1080},
-            )
-            page = await context.new_page()
+        async with AsyncCamoufox(headless=True) as browser:
+            page = await browser.new_page()
 
             for search_url in APARTMENTS_COM_SEARCH_URLS:
                 try:
@@ -34,11 +28,22 @@ class ApartmentsComScraper(BaseScraper):
                     await page.goto(search_url, timeout=PLAYWRIGHT_TIMEOUT, wait_until="domcontentloaded")
                     await self.async_random_delay()
 
-                    # Wait for listing cards to appear
-                    await page.wait_for_selector("article.placard, li.mortar-wrapper", timeout=PLAYWRIGHT_TIMEOUT)
+                    # Wait for listing cards — try multiple selectors
+                    try:
+                        await page.wait_for_selector(
+                            "article.placard, li.mortar-wrapper, [data-listingid], .property-card",
+                            timeout=PLAYWRIGHT_TIMEOUT,
+                        )
+                    except Exception:
+                        logger.warning(f"[apartments.com] No listing cards found on {search_url}, trying page content")
+                        # Log page title for debugging
+                        title = await page.title()
+                        logger.info(f"[apartments.com] Page title: {title}")
 
-                    # Extract listing cards
-                    cards = await page.query_selector_all("article.placard, li.mortar-wrapper")
+                    # Extract listing cards with broader selectors
+                    cards = await page.query_selector_all(
+                        "article.placard, li.mortar-wrapper, [data-listingid], .property-card"
+                    )
                     logger.info(f"[apartments.com] Found {len(cards)} cards on page")
 
                     for card in cards:
@@ -54,8 +59,6 @@ class ApartmentsComScraper(BaseScraper):
                     self.errors.append(str(e))
 
                 await self.async_random_delay()
-
-            await browser.close()
 
         return listings
 

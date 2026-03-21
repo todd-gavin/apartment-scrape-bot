@@ -1,4 +1,4 @@
-"""Zillow scraper — Playwright (parse __NEXT_DATA__ JSON from page source)."""
+"""Zillow scraper — Camoufox (stealth Firefox to bypass HUMAN Security)."""
 
 import json
 import logging
@@ -16,24 +16,21 @@ class ZillowScraper(BaseScraper):
     name = "zillow"
 
     async def scrape(self) -> list[Listing]:
-        from playwright.async_api import async_playwright
-        from playwright_stealth import Stealth
+        from camoufox.async_api import AsyncCamoufox
 
         listings = []
 
-        async with Stealth().use_async(async_playwright()) as p:
-            browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context(
-                user_agent=self.random_user_agent(),
-                viewport={"width": 1920, "height": 1080},
-            )
-            page = await context.new_page()
+        async with AsyncCamoufox(headless=True) as browser:
+            page = await browser.new_page()
 
             for search_url in ZILLOW_SEARCH_URLS:
                 try:
                     logger.info(f"[zillow] Navigating to {search_url}")
                     await page.goto(search_url, timeout=PLAYWRIGHT_TIMEOUT, wait_until="domcontentloaded")
                     await self.async_random_delay()
+
+                    # Wait for page to fully render
+                    await page.wait_for_timeout(3000)
 
                     # Try to extract __NEXT_DATA__ JSON
                     page_content = await page.content()
@@ -43,6 +40,9 @@ class ZillowScraper(BaseScraper):
                         listings.extend(extracted)
                         logger.info(f"[zillow] Extracted {len(extracted)} listings from __NEXT_DATA__")
                     else:
+                        # Log page title to help debug bot detection
+                        title = await page.title()
+                        logger.info(f"[zillow] Page title: {title}")
                         # Fallback: parse DOM
                         dom_listings = await self._parse_dom(page)
                         listings.extend(dom_listings)
@@ -53,8 +53,6 @@ class ZillowScraper(BaseScraper):
                     self.errors.append(str(e))
 
                 await self.async_random_delay()
-
-            await browser.close()
 
         return listings
 

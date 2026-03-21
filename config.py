@@ -58,16 +58,20 @@ SESSION_LOG_PATH = os.path.join(os.path.dirname(__file__), "logs", "session_log.
 # --- Scraper Settings ---
 REQUEST_DELAY_MIN = 3  # seconds
 REQUEST_DELAY_MAX = 8
-PLAYWRIGHT_TIMEOUT = 30000  # ms
+PLAYWRIGHT_TIMEOUT = 60000  # ms (increased for anti-bot sites)
 MAX_RETRIES = 2
 
 USER_AGENTS = [
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Safari/605.1.15",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0",
 ]
+
+# --- RentCast API ---
+RENTCAST_API_KEY = os.getenv("RENTCAST_API_KEY", "")
+RENTCAST_BASE_URL = "https://api.rentcast.io/v1"
 
 # --- Craigslist ---
 CRAIGSLIST_BASE_URL = "https://losangeles.craigslist.org/search/wst/apa"

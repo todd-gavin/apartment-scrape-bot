@@ -1,4 +1,4 @@
-"""HotPads scraper — Playwright (JS-rendered, Zillow Group)."""
+"""HotPads scraper — Camoufox (stealth Firefox, Zillow Group)."""
 
 import logging
 import re
@@ -15,18 +15,12 @@ class HotPadsScraper(BaseScraper):
     name = "hotpads"
 
     async def scrape(self) -> list[Listing]:
-        from playwright.async_api import async_playwright
-        from playwright_stealth import Stealth
+        from camoufox.async_api import AsyncCamoufox
 
         listings = []
 
-        async with Stealth().use_async(async_playwright()) as p:
-            browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context(
-                user_agent=self.random_user_agent(),
-                viewport={"width": 1920, "height": 1080},
-            )
-            page = await context.new_page()
+        async with AsyncCamoufox(headless=True) as browser:
+            page = await browser.new_page()
 
             for search_url in HOTPADS_SEARCH_URLS:
                 try:

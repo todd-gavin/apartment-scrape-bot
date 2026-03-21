@@ -1,4 +1,4 @@
-"""Zumper scraper — Playwright (JS-rendered SPA)."""
+"""Zumper scraper — Camoufox (stealth Firefox)."""
 
 import logging
 import re
@@ -15,32 +15,35 @@ class ZumperScraper(BaseScraper):
     name = "zumper"
 
     async def scrape(self) -> list[Listing]:
-        from playwright.async_api import async_playwright
-        from playwright_stealth import Stealth
+        from camoufox.async_api import AsyncCamoufox
 
         listings = []
 
-        async with Stealth().use_async(async_playwright()) as p:
-            browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context(
-                user_agent=self.random_user_agent(),
-                viewport={"width": 1920, "height": 1080},
-            )
-            page = await context.new_page()
+        async with AsyncCamoufox(headless=True) as browser:
+            page = await browser.new_page()
 
             for search_url in ZUMPER_SEARCH_URLS:
                 try:
                     logger.info(f"[zumper] Navigating to {search_url}")
-                    await page.goto(search_url, timeout=PLAYWRIGHT_TIMEOUT, wait_until="networkidle")
+                    await page.goto(search_url, timeout=PLAYWRIGHT_TIMEOUT, wait_until="domcontentloaded")
                     await self.async_random_delay()
+
+                    # Wait for listing content to appear
+                    try:
+                        await page.wait_for_selector(
+                            "[data-testid='listing-card'], [class*='ListingCard'], a[href*='/apartments-for-rent/']",
+                            timeout=PLAYWRIGHT_TIMEOUT,
+                        )
+                    except Exception:
+                        logger.warning(f"[zumper] No listing selector found on {search_url}")
 
                     # Scroll to load more listings
                     for _ in range(3):
                         await page.evaluate("window.scrollBy(0, window.innerHeight)")
-                        await page.wait_for_timeout(1500)
+                        await page.wait_for_timeout(2000)
 
                     # Extract listing cards
-                    cards = await page.query_selector_all("[class*='ListingCard'], [data-testid='listing-card']")
+                    cards = await page.query_selector_all("[data-testid='listing-card'], [class*='ListingCard']")
                     if not cards:
                         cards = await page.query_selector_all("a[href*='/apartments-for-rent/'], a[href*='/apartment/']")
 
@@ -107,6 +110,10 @@ class ZumperScraper(BaseScraper):
         # If first line looks like a price, use next line
         if re.match(r"^\$", address) and len(lines) > 1:
             address = lines[1]
+
+        # Skip cards with no price (likely non-listing elements)
+        if price == 0:
+            return None
 
         amenities = detect_amenities(text)
 

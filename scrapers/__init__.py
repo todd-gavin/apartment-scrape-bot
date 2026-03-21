@@ -5,7 +5,7 @@ from scrapers.apartments_com import ApartmentsComScraper
 from scrapers.zillow import ZillowScraper
 from scrapers.zumper import ZumperScraper
 from scrapers.hotpads import HotPadsScraper
-from scrapers.westsiderentals import WestsideRentalsScraper
+from scrapers.rentcast import RentCastScraper
 
 ALL_SCRAPERS = {
     "craigslist": CraigslistScraper,
@@ -13,5 +13,5 @@ ALL_SCRAPERS = {
     "zillow": ZillowScraper,
     "zumper": ZumperScraper,
     "hotpads": HotPadsScraper,
-    "westsiderentals": WestsideRentalsScraper,
+    "rentcast": RentCastScraper,
 }

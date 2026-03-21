@@ -29,13 +29,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Playwright Chromium
-        run: playwright install chromium --with-deps
+      - name: Install browsers
+        run: |
+          playwright install chromium --with-deps
+          python -m camoufox fetch
 
       - name: Run scraper
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_TO: ${{ secrets.EMAIL_TO || 'toddrdgavin@gmail.com' }}
+          RENTCAST_API_KEY: ${{ secrets.RENTCAST_API_KEY }}
         run: python main.py
 
       - name: Generate dashboard

@@ -10,6 +10,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   scrape:
@@ -41,10 +43,26 @@ jobs:
       - name: Generate dashboard
         run: python generate_dashboard.py
 
-      - name: Commit updated DB, logs, and dashboard
+      - name: Commit updated DB and logs
         run: |
           git config user.name "Apartment Bot"
           git config user.email "bot@apartment-scrape-bot"
           git add data/listings.db logs/session_log.md docs/index.html
           git diff --cached --quiet || git commit -m "bot: update listings and dashboard [skip ci]"
           git push
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/
+
+  deploy:
+    needs: scrape
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

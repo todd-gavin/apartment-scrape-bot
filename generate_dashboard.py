@@ -1,5 +1,6 @@
 """Generate a static HTML dashboard from the listings database."""
 
+import html as html_mod
 import os
 from datetime import datetime
 
@@ -59,9 +60,9 @@ def generate():
             pills = '<span class="pill pill-gray">None</span>'
 
         neighborhood = l.neighborhood or "N/A"
-        address = l.address or ""
+        address = html_mod.escape(l.address or "")
         address_display = address[:50] + "..." if len(address) > 50 else address
-        title = l.title[:60] + "..." if len(l.title) > 60 else l.title
+        title = html_mod.escape(l.title[:60] + "..." if len(l.title) > 60 else l.title)
         first_seen = l.first_seen.strftime("%b %d")
 
         # Amenity data attributes for filtering

@@ -1,0 +1,86 @@
+﻿2026-03-20T23:47:17.6358974Z ##[group]Run python main.py
+2026-03-20T23:47:17.6359266Z [36;1mpython main.py[0m
+2026-03-20T23:47:17.6409328Z shell: /usr/bin/bash -e {0}
+2026-03-20T23:47:17.6409570Z env:
+2026-03-20T23:47:17.6410082Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.13/x64
+2026-03-20T23:47:17.6410522Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib/pkgconfig
+2026-03-20T23:47:17.6410953Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+2026-03-20T23:47:17.6411328Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+2026-03-20T23:47:17.6411723Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+2026-03-20T23:47:17.6412102Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib
+2026-03-20T23:47:17.6412693Z   RESEND_API_KEY: ***
+2026-03-20T23:47:17.6412902Z   EMAIL_TO: toddgavin@gmail.com
+2026-03-20T23:47:17.6413169Z ##[endgroup]
+2026-03-20T23:47:18.7917144Z 2026-03-20 23:47:18 [INFO] --- Running craigslist scraper ---
+2026-03-20T23:47:18.7918944Z 2026-03-20 23:47:18 [INFO] [craigslist] Scrape attempt 1/2
+2026-03-20T23:47:19.3408930Z 2026-03-20 23:47:19 [INFO] HTTP Request: GET https://losangeles.craigslist.org/search/wst/apa?min_price=0&max_price=4000&min_bedrooms=1&max_bedrooms=1 "HTTP/1.1 200 OK"
+2026-03-20T23:47:19.5220468Z 2026-03-20 23:47:19 [INFO] [craigslist] Found 356 result items on search page
+2026-03-20T23:47:19.6060497Z 2026-03-20 23:47:19 [INFO] [craigslist] 28 listings match target neighborhoods
+2026-03-20T23:47:26.0847220Z 2026-03-20 23:47:26 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-west-los-angeles-bedroom-ba/7922535166.html "HTTP/1.1 200 OK"
+2026-03-20T23:47:31.8439116Z 2026-03-20 23:47:31 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-high-end-bedroom-brentwood/7922534591.html "HTTP/1.1 200 OK"
+2026-03-20T23:47:39.1249213Z 2026-03-20 23:47:39 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-close-to-the-beach-upscale/7922533686.html "HTTP/1.1 200 OK"
+2026-03-20T23:47:43.2114991Z 2026-03-20 23:47:43 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-non-smoking-community/7922533048.html "HTTP/1.1 200 OK"
+2026-03-20T23:47:48.1434417Z 2026-03-20 23:47:48 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-where-every-day-feels/7921989585.html "HTTP/1.1 200 OK"
+2026-03-20T23:47:55.0304757Z 2026-03-20 23:47:55 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-lovely-apt-gated-entry/7922531489.html "HTTP/1.1 200 OK"
+2026-03-20T23:47:59.9306953Z 2026-03-20 23:47:59 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-pool-pet-friendly-ss/7919701791.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:06.5703811Z 2026-03-20 23:48:06 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-bedroom-in-mar-vista-west/7921101705.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:13.7996817Z 2026-03-20 23:48:13 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-video-tour-bright-remodeled/7916522933.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:21.2257745Z 2026-03-20 23:48:21 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-apt-214-one-bedroom-one/7919911249.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:25.3284606Z 2026-03-20 23:48:25 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-apt-218-one-bedroom-one/7919911351.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:29.0593274Z 2026-03-20 23:48:29 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-venice-blvd-203-spacious/7921874120.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:34.6955336Z 2026-03-20 23:48:34 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-922-idaho-ave-renovated/7920796310.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:38.5826750Z 2026-03-20 23:48:38 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-elevated-lifestyle-in-the/7922512019.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:42.8171409Z 2026-03-20 23:48:42 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-the-lifestyle-youve-been/7921990837.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:46.7789241Z 2026-03-20 23:48:46 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-bedroom-in-santa-monica-ss/7920975853.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:52.0606276Z 2026-03-20 23:48:52 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-put-smile-on-your-face/7920971515.html "HTTP/1.1 200 OK"
+2026-03-20T23:48:58.2486448Z 2026-03-20 23:48:58 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-ocean-breeze-better-rates/7922491278.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:04.4450024Z 2026-03-20 23:49:04 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-westwood-1br-1ba-apt/7919215452.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:08.5572683Z 2026-03-20 23:49:08 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-1br-1ba-front-facing-apt/7920280315.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:11.8931789Z 2026-03-20 23:49:11 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-fantastic-apartment-air/7922472656.html "HTTP/1.1 410 Gone"
+2026-03-20T23:49:18.0619413Z 2026-03-20 23:49:18 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-live-minutes-from-beach/7922468997.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:24.9587903Z 2026-03-20 23:49:24 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-spectacular-bed-bath-apt/7920463202.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:31.8699706Z 2026-03-20 23:49:31 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/santa-monica-convenient-br-by-metro/7922447066.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:38.3895299Z 2026-03-20 23:49:38 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-westwood-1br-1ba-stove-oven/7920268980.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:42.1195362Z 2026-03-20 23:49:42 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-ga-renovated-luxury-bedroom/7922440611.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:49.0111626Z 2026-03-20 23:49:49 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-mw-remodeled-bed-bath-in/7922436858.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:54.4614718Z 2026-03-20 23:49:54 [INFO] HTTP Request: GET https://losangeles.craigslist.org/wst/apa/d/los-angeles-g14-luxury-bed-bath-last/7922436759.html "HTTP/1.1 200 OK"
+2026-03-20T23:49:54.4745592Z 2026-03-20 23:49:54 [INFO] [craigslist] Found 28 listings
+2026-03-20T23:49:54.4746527Z 2026-03-20 23:49:54 [INFO] --- Running apartments.com scraper ---
+2026-03-20T23:49:54.4747174Z 2026-03-20 23:49:54 [INFO] [apartments.com] Scrape attempt 1/2
+2026-03-20T23:49:54.5159423Z 2026-03-20 23:49:54 [WARNING] [apartments.com] Attempt 1 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:49:54.5161071Z 2026-03-20 23:49:54 [INFO] [apartments.com] Retrying in 2.6s...
+2026-03-20T23:49:57.1107006Z 2026-03-20 23:49:57 [INFO] [apartments.com] Scrape attempt 2/2
+2026-03-20T23:49:57.1109324Z 2026-03-20 23:49:57 [WARNING] [apartments.com] Attempt 2 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:49:57.1111196Z 2026-03-20 23:49:57 [ERROR] [apartments.com] All 2 attempts failed
+2026-03-20T23:49:57.1112007Z 2026-03-20 23:49:57 [INFO] --- Running zillow scraper ---
+2026-03-20T23:49:57.1112762Z 2026-03-20 23:49:57 [INFO] [zillow] Scrape attempt 1/2
+2026-03-20T23:49:57.1114449Z 2026-03-20 23:49:57 [WARNING] [zillow] Attempt 1 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:49:57.1115966Z 2026-03-20 23:49:57 [INFO] [zillow] Retrying in 2.2s...
+2026-03-20T23:49:59.3138329Z 2026-03-20 23:49:59 [INFO] [zillow] Scrape attempt 2/2
+2026-03-20T23:49:59.3140780Z 2026-03-20 23:49:59 [WARNING] [zillow] Attempt 2 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:49:59.3142554Z 2026-03-20 23:49:59 [ERROR] [zillow] All 2 attempts failed
+2026-03-20T23:49:59.3143089Z 2026-03-20 23:49:59 [INFO] --- Running zumper scraper ---
+2026-03-20T23:49:59.3143474Z 2026-03-20 23:49:59 [INFO] [zumper] Scrape attempt 1/2
+2026-03-20T23:49:59.3144465Z 2026-03-20 23:49:59 [WARNING] [zumper] Attempt 1 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:49:59.3145480Z 2026-03-20 23:49:59 [INFO] [zumper] Retrying in 2.6s...
+2026-03-20T23:50:01.8961820Z 2026-03-20 23:50:01 [INFO] [zumper] Scrape attempt 2/2
+2026-03-20T23:50:01.8964156Z 2026-03-20 23:50:01 [WARNING] [zumper] Attempt 2 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:50:01.8966302Z 2026-03-20 23:50:01 [ERROR] [zumper] All 2 attempts failed
+2026-03-20T23:50:01.8967143Z 2026-03-20 23:50:01 [INFO] --- Running hotpads scraper ---
+2026-03-20T23:50:01.8968265Z 2026-03-20 23:50:01 [INFO] [hotpads] Scrape attempt 1/2
+2026-03-20T23:50:01.8970070Z 2026-03-20 23:50:01 [WARNING] [hotpads] Attempt 1 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:50:01.8971688Z 2026-03-20 23:50:01 [INFO] [hotpads] Retrying in 2.1s...
+2026-03-20T23:50:04.0471473Z 2026-03-20 23:50:04 [INFO] [hotpads] Scrape attempt 2/2
+2026-03-20T23:50:04.0475572Z 2026-03-20 23:50:04 [WARNING] [hotpads] Attempt 2 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:50:04.0478021Z 2026-03-20 23:50:04 [ERROR] [hotpads] All 2 attempts failed
+2026-03-20T23:50:04.0478577Z 2026-03-20 23:50:04 [INFO] --- Running westsiderentals scraper ---
+2026-03-20T23:50:04.0479124Z 2026-03-20 23:50:04 [INFO] [westsiderentals] Scrape attempt 1/2
+2026-03-20T23:50:04.0480711Z 2026-03-20 23:50:04 [WARNING] [westsiderentals] Attempt 1 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:50:04.0482212Z 2026-03-20 23:50:04 [INFO] [westsiderentals] Retrying in 2.5s...
+2026-03-20T23:50:06.5685894Z 2026-03-20 23:50:06 [INFO] [westsiderentals] Scrape attempt 2/2
+2026-03-20T23:50:06.5688597Z 2026-03-20 23:50:06 [WARNING] [westsiderentals] Attempt 2 failed: cannot import name 'stealth_async' from 'playwright_stealth' (/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright_stealth/__init__.py)
+2026-03-20T23:50:06.5693041Z 2026-03-20 23:50:06 [ERROR] [westsiderentals] All 2 attempts failed
+2026-03-20T23:50:06.6134062Z 2026-03-20 23:50:06 [INFO] Total listings scraped: 28, New: 1
+2026-03-20T23:50:07.2085294Z 2026-03-20 23:50:07 [ERROR] Failed to send email: You can only send testing emails to your own email address (toddrdgavin@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.
+2026-03-20T23:50:07.2087917Z 2026-03-20 23:50:07 [INFO] Session logged to /home/runner/work/apartment-scrape-bot/apartment-scrape-bot/logs/session_log.md
+2026-03-20T23:50:07.2088837Z 2026-03-20 23:50:07 [INFO] Done in 168.5s. Active listings: 28

@@ -16,7 +16,7 @@ class ApartmentsComScraper(BaseScraper):
 
     async def scrape(self) -> list[Listing]:
         from playwright.async_api import async_playwright
-        from playwright_stealth import stealth_async
+        from playwright_stealth import Stealth
 
         listings = []
 
@@ -27,7 +27,7 @@ class ApartmentsComScraper(BaseScraper):
                 viewport={"width": 1920, "height": 1080},
             )
             page = await context.new_page()
-            await stealth_async(page)
+            await Stealth().use_async(page)
 
             for search_url in APARTMENTS_COM_SEARCH_URLS:
                 try:

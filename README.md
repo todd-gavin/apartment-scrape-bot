@@ -32,6 +32,21 @@ Every run:
 
 All parameters are configurable in `config.py`.
 
+## Live Dashboard
+
+A mobile-friendly dashboard is auto-generated after each scrape and deployed via GitHub Pages:
+
+**https://todd-gavin.github.io/apartment-scrape-bot/**
+
+Features:
+- Sortable table (click any column header)
+- Filter by neighborhood and price tier
+- Color-coded scores and amenity badges
+- Direct links to each listing on the source site
+- Mobile-responsive — works great on phones
+
+The dashboard updates automatically 5x daily with each scheduled scrape.
+
 ## Scoring System
 
 Each listing is scored on a 0-100 scale:
@@ -88,14 +103,17 @@ python main.py --source craigslist --dry-run
 1. Push this repo to GitHub
 2. Go to **Settings > Secrets and variables > Actions**
 3. Add secret: `RESEND_API_KEY` = your Resend API key
-4. The bot will run automatically at **8am, 11am, 2pm, 5pm, and 8pm Pacific** daily
-5. You can also trigger it manually from the **Actions** tab
+4. Go to **Settings > Pages** > Source: "Deploy from a branch" > Branch: `main` > Folder: `/docs`
+5. The bot will run automatically at **8am, 11am, 2pm, 5pm, and 8pm Pacific** daily
+6. Dashboard live at `https://todd-gavin.github.io/apartment-scrape-bot/`
+7. You can also trigger it manually from the **Actions** tab
 
 ## Project Structure
 
 ```
 apartment-scrape-bot/
 ├── main.py                  # Entry point (scrape → score → notify → log)
+├── generate_dashboard.py    # Generates docs/index.html from listings DB
 ├── config.py                # Search params, scoring weights, URLs
 ├── models.py                # Listing dataclass
 ├── database.py              # SQLite persistence layer
@@ -110,6 +128,8 @@ apartment-scrape-bot/
 │   ├── zumper.py            # Playwright
 │   ├── hotpads.py           # Playwright
 │   └── westsiderentals.py   # Extends apartments_com
+├── docs/
+│   └── index.html           # Generated dashboard (GitHub Pages)
 ├── data/
 │   └── listings.db          # SQLite database (persisted in repo)
 ├── logs/

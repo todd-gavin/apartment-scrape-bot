@@ -18,3 +18,17 @@ Each session records scraper results, new listings found, and notification statu
 **Top new listing:** Score 99.7 - $3,108 1BR 
 
 ---
+
+## Session: 2026-03-20 17:01:10
+
+**Duration:** 34m 40s | **Status:** Completed
+
+| Source | Status | Found | New | Errors |
+|--------|--------|-------|-----|--------|
+| craigslist | OK | 356 | 0 | 0 |
+
+**New listings:** 329 | **Total active:** 356 | **Email sent:** No
+
+**Top new listing:** Score 100.0 - $2,799 1BR 
+
+---

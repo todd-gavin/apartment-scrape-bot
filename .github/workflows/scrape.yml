@@ -8,6 +8,9 @@ on:
     - cron: '0 0,3 * * *'        # 5pm, 8pm PDT
   workflow_dispatch: {}  # Allow manual trigger
 
+permissions:
+  contents: write
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
@@ -32,13 +35,16 @@ jobs:
       - name: Run scraper
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO || 'toddgavin@gmail.com' }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO || 'todd1gavin@gmail.com,amandayannuzzi@gmail.com' }}
         run: python main.py
 
-      - name: Commit updated DB and logs
+      - name: Generate dashboard
+        run: python generate_dashboard.py
+
+      - name: Commit updated DB, logs, and dashboard
         run: |
           git config user.name "Apartment Bot"
           git config user.email "bot@apartment-scrape-bot"
-          git add data/listings.db logs/session_log.md
-          git diff --cached --quiet || git commit -m "bot: update listings and session log [skip ci]"
+          git add data/listings.db logs/session_log.md docs/index.html
+          git diff --cached --quiet || git commit -m "bot: update listings and dashboard [skip ci]"
           git push

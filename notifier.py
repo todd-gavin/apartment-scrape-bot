@@ -35,7 +35,7 @@ def send_new_listings_email(listings: list[Listing]) -> bool:
     try:
         result = resend.Emails.send({
             "from": EMAIL_FROM,
-            "to": [EMAIL_TO],
+            "to": EMAIL_TO,
             "subject": subject,
             "html": html,
         })
@@ -57,7 +57,7 @@ def send_test_email() -> bool:
     try:
         result = resend.Emails.send({
             "from": EMAIL_FROM,
-            "to": [EMAIL_TO],
+            "to": EMAIL_TO,
             "subject": "[Apt Bot] Test Email - Setup Verified",
             "html": """
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

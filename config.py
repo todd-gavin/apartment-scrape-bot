@@ -47,7 +47,7 @@ LAUNDRY_KEYWORDS = [
 # --- Email (Resend) ---
 RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
 EMAIL_FROM = os.getenv("EMAIL_FROM", "Apartment Bot <onboarding@resend.dev>")
-EMAIL_TO = os.getenv("EMAIL_TO", "toddgavin@gmail.com")
+EMAIL_TO = os.getenv("EMAIL_TO", "todd1gavin@gmail.com,amandayannuzzi@gmail.com").split(",")
 
 # --- Database ---
 DB_PATH = os.path.join(os.path.dirname(__file__), "data", "listings.db")

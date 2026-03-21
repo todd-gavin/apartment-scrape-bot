@@ -1,0 +1,20 @@
+﻿2026-03-20T23:50:07.2598021Z ##[group]Run git config user.name "Apartment Bot"
+2026-03-20T23:50:07.2598410Z [36;1mgit config user.name "Apartment Bot"[0m
+2026-03-20T23:50:07.2598754Z [36;1mgit config user.email "bot@apartment-scrape-bot"[0m
+2026-03-20T23:50:07.2599114Z [36;1mgit add data/listings.db logs/session_log.md[0m
+2026-03-20T23:50:07.2599584Z [36;1mgit diff --cached --quiet || git commit -m "bot: update listings and session log [skip ci]"[0m
+2026-03-20T23:50:07.2600183Z [36;1mgit push[0m
+2026-03-20T23:50:07.2649930Z shell: /usr/bin/bash -e {0}
+2026-03-20T23:50:07.2650211Z env:
+2026-03-20T23:50:07.2650464Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.13/x64
+2026-03-20T23:50:07.2650887Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib/pkgconfig
+2026-03-20T23:50:07.2651291Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+2026-03-20T23:50:07.2651638Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+2026-03-20T23:50:07.2651988Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+2026-03-20T23:50:07.2652362Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib
+2026-03-20T23:50:07.2652657Z ##[endgroup]
+2026-03-20T23:50:07.2858079Z [main 7e00347] bot: update listings and session log [skip ci]
+2026-03-20T23:50:07.2858683Z  2 files changed, 32 insertions(+)
+2026-03-20T23:50:07.5079949Z remote: Permission to todd-gavin/apartment-scrape-bot.git denied to github-actions[bot].
+2026-03-20T23:50:07.5081692Z fatal: unable to access 'https://github.com/todd-gavin/apartment-scrape-bot/': The requested URL returned error: 403
+2026-03-20T23:50:07.5111196Z ##[error]Process completed with exit code 128.

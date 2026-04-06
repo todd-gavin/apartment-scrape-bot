@@ -2622,3 +2622,33 @@ Call log:
 
 
 ---
+
+## Session: 2026-04-06 04:12:51
+
+**Duration:** 13m 19s | **Status:** Partial
+
+| Source | Status | Found | New | Errors |
+|--------|--------|-------|-----|--------|
+| craigslist | OK | 36 | 0 | 0 |
+| apartments.com | OK | 0 | 0 | 0 |
+| zillow | OK | 0 | 0 | 0 |
+| zumper | OK | 427 | 0 | 0 |
+| hotpads | FAILED | 0 | 0 | 2 |
+| rentcast | OK | 0 | 0 | 0 |
+
+**New listings:** 6 | **Total active:** 1212 | **Email sent:** Yes
+
+**Top new listing:** Score 95.7 - $3,215 1BR 
+
+### Errors
+- Page.wait_for_selector: Timeout 60000ms exceeded.
+Call log:
+  - waiting for locator("[class*='ListingCard'], .listing-card") to be visible
+
+- Page.wait_for_selector: Timeout 60000ms exceeded.
+Call log:
+  - waiting for locator("[class*='ListingCard'], .listing-card") to be visible
+
+
+
+---
